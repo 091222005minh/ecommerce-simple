@@ -1,6 +1,17 @@
 -- ==============================
 -- DATABASE: CoffeeShop
 -- Author: Thành viên #1 (Database)
+
+-- ✅ Giải thích cấu trúc:
+
+-- products: danh sách cà phê bán ra.
+
+-- customers: thông tin khách.
+
+-- orders: thông tin đơn hàng.
+
+-- order_details: chi tiết từng sản phẩm trong đơn hàng.
+-- → Mỗi đơn hàng có thể chứa nhiều sản phẩm (1–n).
 -- ==============================
 CREATE DATABASE IF NOT EXISTS coffeeshop;
 USE coffeeshop;
