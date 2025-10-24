@@ -1,57 +1,75 @@
-// backend/routes/order.js
 const express = require("express");
 const router = express.Router();
 const db = require("../config/db");
 
 // ===============================
-// POST /orders  → Tạo đơn hàng mới
+// GET ALL ORDERS
+// ===============================
+router.get("/", (req, res) => {
+  const sql = "SELECT * FROM orders";
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error("❌ Lỗi truy vấn:", err);
+      return res.status(500).json({ error: "Lỗi server" });
+    }
+    res.json(results);
+  });
+});
+
+// ===============================
+// GET ORDER BY ID
+// ===============================
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "SELECT * FROM orders WHERE id = ?";
+  db.query(sql, [id], (err, results) => {
+    if (err) {
+      console.error("❌ Lỗi truy vấn:", err);
+      return res.status(500).json({ error: "Lỗi server" });
+    }
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Không tìm thấy đơn hàng" });
+    }
+    res.json(results[0]);
+  });
+});
+
+// ===============================
+// CREATE ORDER
 // ===============================
 router.post("/", (req, res) => {
-  const { customer_id, total_amount, note } = req.body;
+  const { customer_name, total_price } = req.body;
 
-  // Kiểm tra dữ liệu đầu vào
-  if (!customer_id || !total_amount) {
-    return res
-      .status(400)
-      .json({ message: "Thiếu thông tin bắt buộc: customer_id hoặc total_amount" });
+  if (!customer_name || !total_price) {
+    return res.status(400).json({ message: "Thiếu thông tin đơn hàng" });
   }
 
-  // Câu lệnh SQL thêm đơn hàng
-  const sql = "INSERT INTO orders (customer_id, total_amount, note) VALUES (?, ?, ?)";
-  const values = [customer_id, total_amount, note || null];
-
-  db.query(sql, values, (err, result) => {
+  const sql = "INSERT INTO orders (customer_name, total_price) VALUES (?, ?)";
+  db.query(sql, [customer_name, total_price], (err, result) => {
     if (err) {
       console.error("❌ Lỗi tạo đơn hàng:", err);
-      return res.status(500).json({ error: "Lỗi server khi thêm đơn hàng" });
+      return res.status(500).json({ error: "Lỗi server" });
     }
+    res.status(201).json({ message: "Tạo đơn hàng thành công", id: result.insertId });
+  });
+});
 
-    res.status(201).json({
-      message: "✅ Tạo đơn hàng thành công",
-      order_id: result.insertId,
-    });
+// ===============================
+// DELETE ORDER
+// ===============================
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM orders WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("❌ Lỗi xóa đơn hàng:", err);
+      return res.status(500).json({ error: "Lỗi server" });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Không tìm thấy đơn hàng để xóa" });
+    }
+    res.json({ message: "Xóa đơn hàng thành công" });
   });
 });
 
 module.exports = router;
-<<<<<<< HEAD
-=======
-const express = require("express");
-const cors = require("cors");
-const db = require("./config/db");
-const orderRoutes = require("./routes/order");
-
-const app = express();
-const PORT = 3000;
-
-app.use(cors());
-app.use(express.json());
-
-// Gắn route đơn hàng
-app.use("/api/orders", orderRoutes);
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
-});
-
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0

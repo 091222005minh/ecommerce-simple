@@ -1,4 +1,3 @@
-// backend/routes/product.js
 const express = require("express");
 const router = express.Router();
 const db = require("../config/db"); // kết nối MySQL
@@ -39,14 +38,14 @@ router.get("/:id", (req, res) => {
 // POST (Thêm sản phẩm mới)
 // ===============================
 router.post("/", (req, res) => {
-  const { name, price, description } = req.body;
+  const { name, price, description, image_url } = req.body;
 
   if (!name || !price) {
     return res.status(400).json({ message: "Thiếu tên hoặc giá sản phẩm" });
   }
 
-  const sql = "INSERT INTO products (name, price, description) VALUES (?, ?, ?)";
-  db.query(sql, [name, price, description || null], (err, result) => {
+  const sql = "INSERT INTO products (name, price, description, image_url) VALUES (?, ?, ?, ?)";
+  db.query(sql, [name, price, description || null, image_url], (err, result) => {
     if (err) {
       console.error("❌ Lỗi thêm sản phẩm:", err);
       return res.status(500).json({ error: "Lỗi server" });
@@ -60,10 +59,10 @@ router.post("/", (req, res) => {
 // ===============================
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const { name, price, description } = req.body;
+  const { name, price, description, image_url } = req.body;
 
-  const sql = "UPDATE products SET name = ?, price = ?, description = ? WHERE id = ?";
-  db.query(sql, [name, price, description, id], (err, result) => {
+  const sql = "UPDATE products SET name = ?, price = ?, description = ?, image_url = ? WHERE id = ?";
+  db.query(sql, [name, price, description, image_url, id], (err, result) => {
     if (err) {
       console.error("❌ Lỗi cập nhật:", err);
       return res.status(500).json({ error: "Lỗi server" });
@@ -93,42 +92,5 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+// ✅ Không được quên dòng này
 module.exports = router;
-<<<<<<< HEAD
-// ===============================
-// DELETE (Xóa sản phẩm theo ID)
-// ===============================
-router.delete("/:id", (req, res) => {
-  const { id } = req.params;
-  const sql = "DELETE FROM products WHERE id = ?";
-  db.query(sql, [id], (err, result) => {
-    if (err) {
-      console.error("❌ Lỗi xóa:", err);
-      return res.status(500).json({ error: "Lỗi server" });
-    }
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ message: "Không tìm thấy sản phẩm" });
-    }
-    res.json({ message: "Xóa sản phẩm thành công ✅" });
-  });
-});
-=======
-const express = require("express");
-const cors = require("cors");
-const db = require("./config/db");
-const productRoutes = require("./routes/product"); // import routes
-
-const app = express();
-const PORT = 3000;
-
-app.use(cors());
-app.use(express.json());
-
-// Gắn route sản phẩm
-app.use("/api/products", productRoutes);
-
-app.listen(PORT, () => {
-  console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
-});
-
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
