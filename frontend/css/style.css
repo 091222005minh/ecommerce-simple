@@ -51,3 +51,31 @@ header {
   margin-bottom: 10px;
 }
 
+.product-detail {
+  max-width: 500px;
+  margin: 40px auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.product-detail img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.product-detail h2 {
+  color: #4a3f35;
+  margin-bottom: 10px;
+}
+
+.product-detail p {
+  font-size: 18px;
+  color: #6b4f4f;
+  font-weight: bold;
+}
+
+
