@@ -91,3 +91,34 @@ header {
   border-radius: 12px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.1);
 }
+.delete-btn {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn:hover {
+  opacity: 0.8;
+}
+.form-box input {
+  margin: 5px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.form-box button {
+  margin: 5px;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.product-card img {
+  border-radius: 8px;
+  margin-bottom: 6px;
+}

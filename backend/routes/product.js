@@ -94,3 +94,20 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+// ===============================
+// DELETE (Xóa sản phẩm theo ID)
+// ===============================
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+  const sql = "DELETE FROM products WHERE id = ?";
+  db.query(sql, [id], (err, result) => {
+    if (err) {
+      console.error("❌ Lỗi xóa:", err);
+      return res.status(500).json({ error: "Lỗi server" });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: "Không tìm thấy sản phẩm" });
+    }
+    res.json({ message: "Xóa sản phẩm thành công ✅" });
+  });
+});

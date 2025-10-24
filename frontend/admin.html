@@ -13,21 +13,28 @@
   <a href="index.html">Trang Chủ</a>
   <a href="cart.html">Giỏ hàng</a>
   <a href="checkout.html">Thanh toán</a>
-  <a href="admin.html">Admin</a>
+  <a href="admin.html" style="font-weight:bold;color:#ffa600;">Admin</a>
 </nav>
 
 <main>
-  <div>
-    <input id="pname" placeholder="Tên">
-    <input id="pprice" placeholder="Giá">
-    <input id="pimg" placeholder="Image URL">
+
+  <h2>➕ Thêm / ✏️ Sửa Sản phẩm</h2>
+
+  <div class="form-box">
+    <input id="pname" placeholder="Tên sản phẩm">
+    <input id="pprice" type="number" placeholder="Giá">
+    <input id="pimg" placeholder="Link ảnh">
     <input id="pdesc" placeholder="Mô tả">
-    <button onclick="addProduct()">Thêm</button>
+
+    <button onclick="addProduct()">✅ Thêm</button>
+    <button onclick="updateProduct()">✏️ Sửa</button>
   </div>
 
   <hr>
 
+  <h2>📌 Danh sách sản phẩm</h2>
   <div id="admin-products"></div>
+
 </main>
 
 <script src="js/admin.js"></script>
