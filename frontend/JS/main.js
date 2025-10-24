@@ -1,11 +1,8 @@
 const apiURL = "http://localhost:3000/api/products"; // backend của bạn
 
-<<<<<<< HEAD
 // =======================
 // TẢI DANH SÁCH SẢN PHẨM
 // =======================
-=======
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
 async function loadProducts() {
   try {
     const response = await fetch(apiURL);
@@ -22,16 +19,11 @@ async function loadProducts() {
         <img src="${p.image_url || 'https://via.placeholder.com/150'}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p>${p.price.toLocaleString()} VNĐ</p>
-<<<<<<< HEAD
 
         <button onclick="addToCart(${p.id})" class="btn">🛒 Thêm vào giỏ</button>
         <a href="product.html?id=${p.id}" class="btn btn-detail">🔍 Xem chi tiết</a>
 
         <button class="delete-btn" data-id="${p.id}">🗑 Xóa</button>
-=======
-        <button onclick="addToCart(${p.id})" class="btn">🛒 Thêm vào giỏ</button>
-        <a href="product.html?id=${p.id}" class="btn btn-detail">Xem chi tiết</a>
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
       `;
 
       container.appendChild(productCard);
@@ -43,13 +35,10 @@ async function loadProducts() {
 
 document.addEventListener("DOMContentLoaded", loadProducts);
 
+
 // =======================
 // 🛒 GIỎ HÀNG LOCALSTORAGE
 // =======================
-<<<<<<< HEAD
-=======
-
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
 function addToCart(productId) {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -64,10 +53,10 @@ function addToCart(productId) {
   localStorage.setItem("cart", JSON.stringify(cart));
   alert("✅ Đã thêm vào giỏ!");
 }
-<<<<<<< HEAD
+
 
 // =======================
-// 🗑 XÓA SẢN PHẨM
+// 🗑 XÓA SẢN PHẨM (ADMIN)
 // =======================
 document.addEventListener("click", async (e) => {
   if (e.target.classList.contains("delete-btn")) {
@@ -82,5 +71,3 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
-=======
->>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
