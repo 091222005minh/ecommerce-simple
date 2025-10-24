@@ -13,10 +13,11 @@ async function loadProducts() {
       productCard.classList.add("product-card");
 
       productCard.innerHTML = `
-        <img src="${p.image || 'https://via.placeholder.com/150'}" alt="${p.name}">
+        <img src="${p.image_url || 'https://via.placeholder.com/150'}" alt="${p.name}">
         <h3>${p.name}</h3>
         <p>${p.price.toLocaleString()} VNĐ</p>
-        <a href="product.html?id=${p.id}" class="btn">Xem chi tiết</a>
+        <button onclick="addToCart(${p.id})" class="btn">🛒 Thêm vào giỏ</button>
+        <a href="product.html?id=${p.id}" class="btn btn-detail">Xem chi tiết</a>
       `;
 
       container.appendChild(productCard);
@@ -27,3 +28,22 @@ async function loadProducts() {
 }
 
 document.addEventListener("DOMContentLoaded", loadProducts);
+
+// =======================
+// 🛒 GIỎ HÀNG LOCALSTORAGE
+// =======================
+
+function addToCart(productId) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const item = cart.find(item => item.id === productId);
+
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({ id: productId, qty: 1 });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("✅ Đã thêm vào giỏ!");
+}

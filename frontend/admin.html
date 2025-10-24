@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header><h1>⚙️ Admin Quản lý sản phẩm</h1></header>
+
+<nav class="navbar">
+  <a href="index.html">Trang Chủ</a>
+  <a href="cart.html">Giỏ hàng</a>
+  <a href="checkout.html">Thanh toán</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<main>
+  <div>
+    <input id="pname" placeholder="Tên">
+    <input id="pprice" placeholder="Giá">
+    <input id="pimg" placeholder="Image URL">
+    <input id="pdesc" placeholder="Mô tả">
+    <button onclick="addProduct()">Thêm</button>
+  </div>
+
+  <hr>
+
+  <div id="admin-products"></div>
+</main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
