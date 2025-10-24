@@ -25,7 +25,6 @@ header {
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   text-align: center;
   transition: transform 0.2s;
-  cursor: pointer;
 }
 
 .product-card:hover {
@@ -34,48 +33,54 @@ header {
 
 .product-card img {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
 
 .product-card h3 {
   margin: 10px 0 5px;
-  color: #4a3f35;
 }
 
 .product-card p {
   color: #6b4f4f;
   font-weight: bold;
-  margin-bottom: 10px;
 }
 
+/* ====== Trang chi tiết sản phẩm ====== */
 .product-detail {
-  max-width: 500px;
-  margin: 40px auto;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  padding: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
 
-.product-detail img {
+.product-detail-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 500px;
+}
+
+.product-detail-card img {
   width: 100%;
   border-radius: 12px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
-.product-detail h2 {
-  color: #4a3f35;
-  margin-bottom: 10px;
-}
-
-.product-detail p {
-  font-size: 18px;
+.product-detail-card .price {
   color: #6b4f4f;
   font-weight: bold;
+  font-size: 1.2rem;
 }
 
+.btn-back {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  color: white;
+  background-color: #5c3d2e;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
 
