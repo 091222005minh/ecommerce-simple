@@ -94,6 +94,7 @@ router.delete("/:id", (req, res) => {
 });
 
 module.exports = router;
+<<<<<<< HEAD
 // ===============================
 // DELETE (Xóa sản phẩm theo ID)
 // ===============================
@@ -111,3 +112,23 @@ router.delete("/:id", (req, res) => {
     res.json({ message: "Xóa sản phẩm thành công ✅" });
   });
 });
+=======
+const express = require("express");
+const cors = require("cors");
+const db = require("./config/db");
+const productRoutes = require("./routes/product"); // import routes
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+// Gắn route sản phẩm
+app.use("/api/products", productRoutes);
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
+});
+
+>>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0

@@ -34,3 +34,24 @@ router.post("/", (req, res) => {
 });
 
 module.exports = router;
+<<<<<<< HEAD
+=======
+const express = require("express");
+const cors = require("cors");
+const db = require("./config/db");
+const orderRoutes = require("./routes/order");
+
+const app = express();
+const PORT = 3000;
+
+app.use(cors());
+app.use(express.json());
+
+// Gắn route đơn hàng
+app.use("/api/orders", orderRoutes);
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server chạy tại http://localhost:${PORT}`);
+});
+
+>>>>>>> 7ef27adf1d3571e8f0757d35e45e60cf6dfaf1c0
