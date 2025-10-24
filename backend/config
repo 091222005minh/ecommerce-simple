@@ -1,1 +1,21 @@
+// backend/config/db.js
+const mysql = require("mysql2");
 
+// Tạo kết nối MySQL
+const db = mysql.createConnection({
+  host: "localhost",       // hoặc IP / domain server MySQL
+  user: "root",            // tài khoản MySQL
+  password: "your_password", // mật khẩu MySQL
+  database: "your_db_name"   // tên cơ sở dữ liệu
+});
+
+// Kiểm tra kết nối
+db.connect((err) => {
+  if (err) {
+    console.error("❌ Lỗi kết nối MySQL:", err);
+  } else {
+    console.log("✅ Kết nối MySQL thành công!");
+  }
+});
+
+module.exports = db;
